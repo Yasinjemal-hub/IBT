@@ -60,8 +60,11 @@
 # city_set=set(col_1 - col_2)
 # print(city_set)
 
-import math
+# import math
 
-pi=math.pow(5,2)
+# pi=math.pow(5,2)
 
-print(pi)
+# print(pi)
+# with open("IBT/module1/yasin.py") as f:
+# for line in f:
+# print(f.read)
