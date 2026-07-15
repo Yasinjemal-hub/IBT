@@ -1,3 +1,5 @@
+from abc import ABC 
+
 class account:
     def __init__(self,owner, balance,acc_type, rate=0.07,):
        self.balance=balance
