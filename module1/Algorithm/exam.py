@@ -23,15 +23,41 @@
 #     ○ Test 1: returnFactorial(5) outputs 120
 #     ○ Test 2: returnFactorial(6) outputs 720
 #     ○ Test 3: returnFactorial(0) outputs 1
-def returnFactorial(n):
-    if n == 0 or n == 1:
-        return 1
+# def returnFactorial(n):
+#     if n == 0 or n == 1:
+#         return 1
     
-    factorial = 1
-    for i in range(2, n + 1):
-        factorial *= i
-    return factorial
+#     factorial = 1
+#     for i in range(2, n + 1):
+#         factorial *= i
+#     return factorial
 
-print(returnFactorial(5))
-print(returnFactorial(6))
-print(returnFactorial(0))
+# print(returnFactorial(5))
+# print(returnFactorial(6))
+# print(returnFactorial(0))
+
+# Question 4 (Meera array)
+# ● A Meera array is defined to be an array containing only numbers as its elements and forall n values in the array, the value n*2 is not in the array. So [3, 5, -2] is a Meera array because 3*2, 5*2 or 2*2 are not in the array. But [8, 3, 4] is not a Meera array because 2*4=8 and both 4 and 8 are elements found in the array. Write a function that takes an array of numbered elements and prints “I am a Meera array” in the console if its array does NOT contain n and also n*2 as value. Otherwise, the function prints “I am NOT a Meera array”
+#       ○ Test 1: checkMeera([10, 4, 0, 5]) outputs “I am NOT a Meera array” because 5 * 2 is 10
+#       ○ Test 2: checkMeera([7, 4, 9]) outputs “I am a Meera array”
+#       ○ Test 1: checkMeera([1, -6, 4, -3]) outputs “I am NOT a Meera array” because -3 *2 is -6 
+
+def checkMeera(arr):
+    
+    num_set = set(arr)
+    
+    for n in arr:
+   
+        if n == 0:
+            if arr.count(0) > 1:
+                print("I am NOT a Meera array")
+                return
+       
+        elif (n * 2) in num_set:
+            print("I am NOT a Meera array")
+            return
+            
+    print("I am a Meera array")
+checkMeera([10, 4, 0, 5])
+checkMeera([7, 4, 9])
+checkMeera([1, -6, 4, -3])
