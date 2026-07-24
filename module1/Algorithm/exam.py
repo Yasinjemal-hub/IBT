@@ -10,7 +10,8 @@
 #      ○ reverseCompare(23) prints "Not ok", because 23 is not greater than 32
 
 def reverseCompare(num):
-    if num>27:
+    reversed_num = int(str(num)[::-1])
+    if num>reversed_num:
         print("ok")
     else:
         print("not ok")
