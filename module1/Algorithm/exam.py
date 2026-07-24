@@ -1,9 +1,18 @@
 # Given an array of numbers, write a function that prints in the console another arraywhich contains all the even numbers in the original array, which also have even indexes only.
 #       ○ Test 1: getOnlyEvens([1, 2, 3, 6, 4, 8]) prints [ 4]
 #       ○ Test 2: getOnlyEvens([0, 1, 2, 3, 4]) prints [0, 2, 4]
-#  Test1
+#  Test
+def getOnlyEvens(arr):
+    # Filter elements that are even and at an even index
+    result = [val for idx, val in enumerate(arr) if idx % 2 == 0 and val % 2 == 0]
+    print(result)
+
+# Test cases
+getOnlyEvens([1, 2, 3, 6, 4, 8])  # Prints: [4]
+getOnlyEvens([0, 1, 2, 3, 4])
 
 
+    
 # Question 2
 # ● Create a function that takes a two-digit number as an parameter and prints "Ok" inthe console if the given string is greater than its reversed digit version. If not, the function will print "Not ok"
 #      ○ Test 1: reverseCompare(72) prints "ok" because 72 > 27
@@ -68,22 +77,40 @@
 # times) Write a function named isDual that returns 1 if its array argument is a Dual array.
 # Otherwise it returns 0.
 
-def isDual(arr):
-    # Dictionary to store the frequency of each number
-    counts = {}
+# def isDual(arr):
+#     # Dictionary to store the frequency of each number
+#     counts = {}
     
-    # Count occurrences of each element
-    for num in arr:
-        counts[num] = counts.get(num, 0) + 1
+#     # Count occurrences of each element
+#     for num in arr:
+#         counts[num] = counts.get(num, 0) + 1
         
-    for count in counts.values():
-        if count != 2:
-            return 0
+#     for count in counts.values():
+#         if count != 2:
+#             return 0
             
-    return 1
+#     return 1
 
 
-print(isDual([1, 2, 1, 3, 3, 2])) 
-print(isDual([2, 3, 2, 5, 5,3]))    
-print(isDual([3, 1, 1, 2, 2]))     
+# print(isDual([1, 2, 1, 3, 3, 2])) 
+# print(isDual([2, 3, 2, 5, 5,3]))    
+# print(isDual([3, 1, 1, 2, 2]))     
+
+# q,6
+
+def digitalClock(seconds):
+    # 1 day = 24 * 60 * 60 = 86,400 seconds. 
+    # Modulo wraps the time around if it exceeds 24 hours.
+    seconds = seconds % 86400
     
+    hours = seconds // 3600
+    minutes = (seconds % 3600) // 60
+    secs = seconds % 60
+    
+    # Format with :02d to ensure every number is zero-padded to 2 digits
+    return f"{hours:02d}:{minutes:02d}:{secs:02d}"
+
+# --- Test Cases ---
+print(digitalClock(5025))  
+print(digitalClock(61201))  
+print(digitalClock(87000))  
