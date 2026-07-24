@@ -42,22 +42,48 @@
 #       ○ Test 2: checkMeera([7, 4, 9]) outputs “I am a Meera array”
 #       ○ Test 1: checkMeera([1, -6, 4, -3]) outputs “I am NOT a Meera array” because -3 *2 is -6 
 
-def checkMeera(arr):
+# def checkMeera(arr):
     
-    num_set = set(arr)
+#     num_set = set(arr)
     
-    for n in arr:
+#     for n in arr:
    
-        if n == 0:
-            if arr.count(0) > 1:
-                print("I am NOT a Meera array")
-                return
+#         if n == 0:
+#             if arr.count(0) > 1:
+#                 print("I am NOT a Meera array")
+#                 return
        
-        elif (n * 2) in num_set:
-            print("I am NOT a Meera array")
-            return
+#         elif (n * 2) in num_set:
+#             print("I am NOT a Meera array")
+#             return
             
-    print("I am a Meera array")
-checkMeera([10, 4, 0, 5])
-checkMeera([7, 4, 9])
-checkMeera([1, -6, 4, -3])
+#     print("I am a Meera array")
+# checkMeera([10, 4, 0, 5])
+# checkMeera([7, 4, 9])
+# checkMeera([1, -6, 4, -3])
+
+
+# Question 5 (Dual array)
+# ● Define a Dual array to be an array where every value occurs exactly twice. For example, {1, 2, 1, 3, 3, 2} is a dual array.The following arrays are not Dual arrays {2, 5, 2, 5, 5} (5 occurs three times instead of two times) {3, 1, 1, 2, 2} (3 occurs once instead of two
+# times) Write a function named isDual that returns 1 if its array argument is a Dual array.
+# Otherwise it returns 0.
+
+def isDual(arr):
+    # Dictionary to store the frequency of each number
+    counts = {}
+    
+    # Count occurrences of each element
+    for num in arr:
+        counts[num] = counts.get(num, 0) + 1
+        
+    for count in counts.values():
+        if count != 2:
+            return 0
+            
+    return 1
+
+
+print(isDual([1, 2, 1, 3, 3, 2])) 
+print(isDual([2, 3, 2, 5, 5,3]))    
+print(isDual([3, 1, 1, 2, 2]))     
+    
