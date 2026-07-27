@@ -6,11 +6,24 @@ def getOnlyEvens(arr):
     # Filter elements that are even and at an even index
     result = [val for idx, val in enumerate(arr) if idx % 2 == 0 and val % 2 == 0]
     print(result)
-
 # Test cases
 getOnlyEvens([1, 2, 3, 6, 4, 8])  # Prints: [4]
 getOnlyEvens([0, 1, 2, 3, 4])
 
+def practice():
+    # Question 1
+    # ● Create a function that takes a string as an argument and returns the number of vowels contained in that string. The vowels are “a”, “e”, “i”, “o”, and “u”.
+    #      ○ Test 1: countVowels(“Hello”) returns 2
+    #      ○ Test 2: countVowels(“Umbrella”) returns 3
+    #      ○ Test 3: countVowels(“Sky”) returns 0
+
+    def countVowels(s):
+        vowels = "aeiouAEIOU"
+        return sum(1 for char in s if char in vowels)
+
+    print(countVowels("Hello"))      # Returns: 2
+    print(countVowels("Umbrella"))   # Returns: 3
+    print(countVowels("Sky"))        # Returns: 0
 
     
 # Question 2
@@ -18,14 +31,14 @@ getOnlyEvens([0, 1, 2, 3, 4])
 #      ○ Test 1: reverseCompare(72) prints "ok" because 72 > 27
 #      ○ reverseCompare(23) prints "Not ok", because 23 is not greater than 32
 
-# def reverseCompare(num):
-#     reversed_num = int(str(num)[::-1])
-#     if num>reversed_num:
-#         print("ok")
-#     else:
-#         print("not ok")
-# reverseCompare(72)
-# reverseCompare(23)
+def reverseCompare(num):
+    reversed_num = int(str(num)[::-1])
+    if num>reversed_num:
+        print("ok")
+    else:
+        print("not ok")
+reverseCompare(72)
+reverseCompare(23)
 
 #  Question 3
 # ● Write a function that takes a positive integer and returns the factorial of the number. Notes: The factorial of 0 is 1. Ex: factorial seven is : 1 × 2 × 3 × 4 × 5 × 6 × 7. The factorial of any positive integer x is x * (x - 1) * (x - 2) * . . . . . . * 1 (ex: factorial of 4 is 4 * 3 * 2 * 1 = 24)
@@ -99,15 +112,13 @@ getOnlyEvens([0, 1, 2, 3, 4])
 # q,6
 
 def digitalClock(seconds):
-    # 1 day = 24 * 60 * 60 = 86,400 seconds. 
-    # Modulo wraps the time around if it exceeds 24 hours.
-    seconds = seconds % 86400
     
+    seconds = seconds % 86400
     hours = seconds // 3600
     minutes = (seconds % 3600) // 60
     secs = seconds % 60
     
-    # Format with :02d to ensure every number is zero-padded to 2 digits
+
     return f"{hours:02d}:{minutes:02d}:{secs:02d}"
 
 # --- Test Cases ---
