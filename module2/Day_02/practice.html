@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta description="This is a form for reserving a table at a restaurant.">
+    <title>Form</title>
+</head>
+<body>
+   <form action="/reserve" method="post">
+<label for="name">Full name</label>
+<input id="name" name="name" required>
+<br>
+<br>
+<label for="guests">Guests</label>
+<input id="guests" name="guests"
+type="number" min="1" max="20">
+<br>
+<br>
+<label for="phone">Phone</label>
+<input id="phone" name="phone"
+type="tel" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
+placeholder="123-456-7890" required>
+<br>
+<br>
+<label for="date">Date</label>
+<input type="date" id="date" name="date" required>
+<br><br>
+<button type="submit">Reserve</button>
+</form>
+
+<br>
+
+<caption>IBT Student Table</caption>
+<table>
+    <thead>
+        <tr>
+            <th scope="col">name</th>
+            <th scope="col">scope</th>
+            <th scope="col">Buy (ETB)</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>yasin</td>
+            <td>@yasin</td>
+            <td>500</td>
+        </tr>
+         <tr>
+            <td>yasin</td>
+            <td>@yasin</td>
+            <td>600</td>
+        </tr>
+    </tbody>
+</table>
+    <br>
+<img src="./images/olav-tvedt-6lSBynPRaAQ-unsplash.jpg" width="200px" height="300px" alt="new car"
+loading="lazy">
+<br>
+<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3940.5466533663407!2d38.800356934670084!3d9.013794471926252!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2set!4v1785503975105!5m2!1sen!2set" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+</body>
+</html>
