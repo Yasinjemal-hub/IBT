@@ -1,0 +1,64 @@
+/* 1. Root palette and spacing scale */
+
+:root {
+  --brand: hsl(212, 68%, 30%);
+  --brand-hover: hsl(212, 68%, 45%);
+  --space: 16px;
+  --radius: 10px;
+}
+
+/* 2. Box-sizing */
+
+* { 
+  box-sizing: border-box; 
+}
+body { 
+  font-family: "Crimson Pro", sans-serif;   /*sans serif is here as a backup.*/
+  line-height: 1.5; 
+}
+
+/* 3. Centering card */
+
+.card {
+  max-width: 360px;
+  margin: 40px auto;
+  padding: var(--space);   
+  border: 1px solid #E2E8F0;
+  border-radius: var(--radius); 
+  position: relative;
+  text-align: center;
+}
+
+/* 4. A clear typographic hierarchy */
+
+.business-name {
+  font-size: 24px;
+}
+.tagline {
+  font-size: 14px;
+}
+.description {
+  font-size: 16px;
+}
+
+/* 5. Button with a hover state */
+
+.btn {
+  background-color: var(--brand);
+  color: white;
+}
+.btn:hover { 
+  background-color: var(--brand-hover); 
+}
+
+/* 6. A pseudo element(::before) */
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background-color: var(--brand);
+}
