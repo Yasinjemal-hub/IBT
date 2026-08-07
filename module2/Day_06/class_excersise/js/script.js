@@ -1,14 +1,16 @@
 // console.log("hello world")
 
-var // global name
+// var // global name
 
 
-var name="yasin"
-var name="wake"
+// var name="yasin"
+// var name="wake"
 
 
 
-let name="ahmed"
+// let name="ahmed"
 
-name="suliman"
+// name="suliman"
+let num="abbd"
 
+console.log(typeof Number(num))
