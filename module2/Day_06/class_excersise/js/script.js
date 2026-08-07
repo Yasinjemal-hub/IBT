@@ -24,11 +24,20 @@
 // const bigMember = total > 1000 && isMember;
 
 
-const name = 'Almaz';
-const total = 480;
-// old way — clumsy + joins
+// const name = 'Almaz';
+// const total = 480;
+// // old way — clumsy + joins
 
-// template literal — readable\
-console.log(`Hi ${name}, pay ${total} ETB`)
-`Hi ${name}, pay ${total} ETB`
-// "Hi Almaz, pay 480 ETB"
+// // template literal — readable\
+// console.log(`Hi ${name}, pay ${total} ETB`)
+// `Hi ${name}, pay ${total} ETB`
+// // "Hi Almaz, pay 480 ETB"
+
+const score = 74; // module mark
+if (score >= 70) {
+console.log("Pass — progress");
+} else if (score >= 50) {
+console.log("Remedial plan");
+} else {
+console.log("Retake the module");
+}
