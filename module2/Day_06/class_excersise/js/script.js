@@ -33,11 +33,29 @@
 // `Hi ${name}, pay ${total} ETB`
 // // "Hi Almaz, pay 480 ETB"
 
-const score = 74; // module mark
-if (score >= 70) {
-console.log("Pass — progress");
-} else if (score >= 50) {
-console.log("Remedial plan");
-} else {
-console.log("Retake the module");
-}
+// const score = 74; // module mark
+// if (score >= 70) {
+// console.log("Pass — progress");
+// } else if (score >= 50) {
+// console.log("Remedial plan");
+// } else {
+// console.log("Retake the module");
+// }
+
+// let paymentMethod="CBE"
+
+// switch(paymentMethod){
+
+//     case "CBE":
+//         console.log("paid with cbe")
+//         break;
+//     case "Tele-bIrr":
+//         console.log("paid with tele birr")
+//         break;
+//     default:
+//         console.log("unknown")
+// }
+
+// for(i=1; i<=10;i++){
+//     console.log(i)
+// }
