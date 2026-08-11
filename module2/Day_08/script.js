@@ -6,3 +6,10 @@ let obj={
 }
 
 console.log(obj)
+ const item=["tebise", "shiro", "ktfo"]
+
+//  item.push("firfir")
+ item.pop()
+ item.indexOf("shiro")
+
+ console.log(item)
