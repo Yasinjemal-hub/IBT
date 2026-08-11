@@ -13,3 +13,14 @@ console.log(obj)
  item.indexOf("shiro")
 
  console.log(item)
+
+ const newArray=item.map((element)=>{
+    console.log(element)
+ })
+
+ const filiter=item.filter((element)=>{
+    return element=="shiro"
+ }
+)
+
+console.log(filiter)
