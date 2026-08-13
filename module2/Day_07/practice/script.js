@@ -106,3 +106,20 @@ const bank = makeQueue(); // CBE counter
 bank.next(); // 1 (Almaz)
 bank.next(); // 2 (Dawit)
 bank.current(); // 2
+
+
+// practice make it closure private
+
+function make(){
+    let x=0 //private
+    return {
+        next(){x++; return x},
+        current() {return x}
+    }
+}
+
+let count= make()
+console.log(count.next())
+console.log(count.next())
+console.log(count.current())
+
