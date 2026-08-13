@@ -76,10 +76,35 @@ console.log(`Hi ${name}, pay ${tot} ETB`)
 
 //ternary operator
 
-const total = 1200;
+const to = 1200;
 // if / else — four lines
 let fee;
-if (total >= 1000) { fee = 0; }
+if (to >= 1000) { fee = 0; }
 else { fee = 60; }
 // ternary — one line
-const fee2 = total >= 1000 ? 0 : 60;
+const fee2 = to >= 1000 ? 0 : 60;
+
+//bracnhing if /else
+
+const score = 74; // module mark
+if (score >= 70) {
+console.log("Pass — progress");
+} else if (score >= 50) {
+console.log("Remedial plan");
+} else {
+console.log("Retake the module");
+}
+
+//switch for many case
+
+switch (method) {
+case 'telebirr':
+fee = total * 0.005;
+break;
+case 'cbebirr':
+case 'awash': // fall-through
+fee = total * 0.01;
+break;
+default:
+fee = total * 0.02;
+}
