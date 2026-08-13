@@ -68,3 +68,27 @@ vat(480); // 72
 const arr=(n)=> n*0.6
 
 console.log(arr(40))
+
+//closure
+
+function makeGreeter(city) {
+// inner function "closes over" city
+return function (name) {
+return `Selam ${name}, from ${city}`;
+};
+}
+const addis = makeGreeter("Addis Ababa");
+addis("Almaz"); // "Selam Almaz, from..."
+
+//closure practice
+
+function welcome(city){
+
+    return function (name){
+        return `hi ${name} welcome into ${city} `
+    }
+}
+
+const enkondehnametah= welcome("addis ababa")
+
+console.log(enkondehnametah("yasin"))
