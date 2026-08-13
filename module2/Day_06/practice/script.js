@@ -54,3 +54,12 @@ sum*=4
 const result=sum * vat
 
 console.log(result)
+
+//comparison and logical operator
+
+const total = 1200; // ETB
+const isMember = true;
+// free delivery over 1000 OR member
+const freeDelivery =
+total >= 1000 || isMember; // true
+const bigMember = total > 1000 && isMember;
