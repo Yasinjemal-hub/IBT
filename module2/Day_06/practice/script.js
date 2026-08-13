@@ -74,3 +74,12 @@ const tot = 480;
 console.log(`Hi ${name}, pay ${tot} ETB`)
 // "Hi Almaz, pay 480 ETB
 
+//ternary operator
+
+const total = 1200;
+// if / else — four lines
+let fee;
+if (total >= 1000) { fee = 0; }
+else { fee = 60; }
+// ternary — one line
+const fee2 = total >= 1000 ? 0 : 60;
