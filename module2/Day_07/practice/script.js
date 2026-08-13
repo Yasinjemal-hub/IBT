@@ -14,3 +14,5 @@ function sum(num){
 
 console.log(sum(80))
 console.log(sum(70))
+
+// function declaration & expression with hioisted
