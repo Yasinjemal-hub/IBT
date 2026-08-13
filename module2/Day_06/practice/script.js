@@ -57,9 +57,20 @@ console.log(result)
 
 //comparison and logical operator
 
-const total = 1200; // ETB
+const tota = 1200; // ETB
 const isMember = true;
 // free delivery over 1000 OR member
 const freeDelivery =
 total >= 1000 || isMember; // true
 const bigMember = total > 1000 && isMember;
+
+//template literal
+
+const name = 'Almaz';
+const tot = 480;
+// old way — clumsy + joins
+'Hi ' + name + ', pay ' + tot + ' ETB'
+// template literal — readable
+console.log(`Hi ${name}, pay ${tot} ETB`)
+// "Hi Almaz, pay 480 ETB
+
