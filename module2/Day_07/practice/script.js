@@ -21,3 +21,9 @@ greet(); // ✓ works
 function greet() {
 return "Selam!";
 }
+
+// expression — NOT hoisted
+const greet = function () {
+return "Selam!";
+};
+greet(); // call AFTER the line
