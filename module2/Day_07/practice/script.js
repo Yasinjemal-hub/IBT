@@ -16,3 +16,8 @@ console.log(sum(80))
 console.log(sum(70))
 
 // function declaration & expression with hioisted
+// declaration — hoisted, callable above
+greet(); // ✓ works
+function greet() {
+return "Selam!";
+}
