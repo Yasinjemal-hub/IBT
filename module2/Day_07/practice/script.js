@@ -92,3 +92,17 @@ function welcome(city){
 const enkondehnametah= welcome("addis ababa")
 
 console.log(enkondehnametah("yasin"))
+
+// closure make it privat state
+
+function makeQueue() {
+let number = 0; // private
+return {
+next() { number++; return number; },
+current() { return number; },
+};
+}
+const bank = makeQueue(); // CBE counter
+bank.next(); // 1 (Almaz)
+bank.next(); // 2 (Dawit)
+bank.current(); // 2
