@@ -57,3 +57,10 @@ function totalpay(...pays){
 console.log(totalpay(200,760,780))
 
 // arrow function
+// normal expression
+const vat = function (n) { return n * 0.15; };
+// arrow — same thing, shorter
+const vat = (n) => { return n * 0.15; };
+// one expression → implicit return
+const vat = n => n * 0.15;
+vat(480); // 72
