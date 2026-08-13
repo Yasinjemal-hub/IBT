@@ -23,4 +23,17 @@ raw + 20; // '48020' ✗
 String(480); // "480"
 Boolean(0); // false
 
-//
+//falsy& truth 
+// === checks value AND type (use this)
+480 === 480; // true
+480 === '480'; // false ✓ correct
+// == coerces first (avoid)
+480 == '480'; // true ✗ surprising
+if (basketTotal) {
+    if(!0){
+        console.log("run")
+    }
+    else{
+        console.log("not run")
+    }
+}
