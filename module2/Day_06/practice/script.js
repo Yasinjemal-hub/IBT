@@ -37,3 +37,20 @@ if (basketTotal) {
         console.log("not run")
     }
 }
+
+//operator and assignment
+
+let total = 480;
+total += 120; // total = total + 120
+total -= 50; // 550
+total *= 2; // 1100
+const vat = total * 0.15; // 165
+console.log(vat)
+
+let sum=450
+sum+=200
+sum-=40
+sum*=4
+const result=sum * vat
+
+console.log(result)
