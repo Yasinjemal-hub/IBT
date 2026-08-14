@@ -60,3 +60,9 @@ const totalAge=age.reduce((sum,a)=> sum+=a,0)
 
 console.log(totalAge)
 
+// methods return arrays → chain them
+let chain=dishes.filter(d => d.veg)
+.map(d => d.price)
+.reduce((s, p) => s + p, 0)
+
+console.log(chain)
