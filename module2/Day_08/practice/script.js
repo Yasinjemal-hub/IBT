@@ -82,3 +82,29 @@ customer.email = "a@x.et"; // add key
 
 console.log(customer)
 
+//method and this
+
+const account = {
+owner: "Dawit",
+balance: 5000, // ETB
+deposit(amount) {
+this.balance += amount;
+return this.balance;
+},
+};
+account.deposit(1500); //
+
+const cbe={
+    name: "yasin",
+    acc_no:"1000595415539",
+    balance: 200000,
+    withdrawel(amount){
+      this.balance-=amount
+      return this.balance
+    }
+}
+
+let current=cbe.withdrawel(30000);
+console.log(current)
+
+//
