@@ -123,3 +123,17 @@ console.log(count.next())
 console.log(count.next())
 console.log(count.current())
 
+function loop(){
+   for (i=0; i<=10; i++){
+   console.log(i)  
+
+
+ }
+
+ return i
+}
+
+console.log(loop())
+
+     
+
