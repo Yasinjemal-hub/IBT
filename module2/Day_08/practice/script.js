@@ -40,9 +40,23 @@ dishes.filter(d => d.veg); // 2 items
 dishes.filter(d => d.price < 150);
 // first match only
 dishes.find(d => d.name === "Shiro");
-const prices = [120, 200, 160];
+const price = [120, 200, 160];
 // fold a list into ONE value
-const total = prices.reduce(
+const total = price.reduce(
 (sum, p) => sum + p, 0); // 480
 
-//
+//reduce method
+
+const p = [120, 200, 160];
+// fold a list into ONE value
+const t = p.reduce(
+(sum, p) => sum + p, 0); // 480\
+
+console.log(t)
+
+const age=[22,19, 14, 8]
+
+const totalAge=age.reduce((sum,a)=> sum+=a,0)
+
+console.log(totalAge)
+
