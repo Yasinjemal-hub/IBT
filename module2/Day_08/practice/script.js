@@ -66,3 +66,19 @@ let chain=dishes.filter(d => d.veg)
 .reduce((s, p) => s + p, 0)
 
 console.log(chain)
+
+// object method
+
+const customer = {
+name: "Almaz Bekele",
+phone: "+251911234567",
+city: "Addis Ababa",
+member: true,
+};
+customer.name; // dot access
+customer["phone"]; // bracket access
+customer.member = false; // update
+customer.email = "a@x.et"; // add key
+
+console.log(customer)
+
