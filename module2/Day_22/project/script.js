@@ -99,3 +99,10 @@ function load() {
 const saved = localStorage.getItem(KEY);
 if (saved) Object.assign(state, JSON.parse(saved));
 }
+
+async function init() {
+load(); // restore saved choices
+await loadRates(); // fetch live rates
+render(); // draw everything
+}
+init();
