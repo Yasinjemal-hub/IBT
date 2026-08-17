@@ -1,4 +1,13 @@
 const API="https://open.er-api.com/v6/latest/ETB";
+const form = document.querySelector("#convert-form");
+const amount = document.querySelector("#amount");
+const result = document.querySelector("#result");
+const status = document.querySelector("#status");
+const select = document.querySelector("#currency");
+const watchUl = document.querySelector("#watchlist");
+
+
+
 
     const state = {
     base: "ETB",
@@ -8,7 +17,6 @@ const API="https://open.er-api.com/v6/latest/ETB";
     currency: "USD",
     };
 
-const status = document.querySelector("#status");
 async function loadRates() {
 status.textContent = "Loading rates…";
 try {
@@ -23,7 +31,6 @@ status.textContent = "Could not load rates.";
 }
 }
 
-const select = document.querySelector("#currency");
 function render() {
 // fill the dropdown from the live rates
 const codes = Object.keys(state.rates);
@@ -35,9 +42,7 @@ renderWatchlist(); // covered next
 }
 
 
-const form = document.querySelector("#convert-form");
-const amount = document.querySelector("#amount");
-const result = document.querySelector("#result");
+
 form.addEventListener("submit", (e) => {
 e.preventDefault();
 const amt = Number(amount.value);
@@ -53,7 +58,6 @@ result.textContent =
 });
 
 
-const watchUl = document.querySelector("#watchlist");
 function renderWatchlist() {
 if (state.watchlist.length === 0) {
 watchUl.innerHTML = "<li>No currencies yet</li>";
