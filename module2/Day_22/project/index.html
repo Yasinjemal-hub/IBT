@@ -11,12 +11,20 @@
 <p id="status">Loading rates…</p>
 <form id="convert-form">
 <input id="amount" type="number" value="100" />
-<select id="currency"></select>
+<select id="currency">
+    <option value="USD">USD</option>
+    <option value="EUR">EUR</option>
+    <option value="GBP">GBP</option>
+</select>
 <button>Convert</button>
 </form>
 <p id="result"></p>
 <h2>Watchlist</h2>
-<ul id="watchlist"></ul>
+<ul id="watchlist">
+    <li>USD</li>
+    <li>EUR</li>
+    <li>GBP</li>
+</ul>
 
 <script src="script.js"></script>
 </body>
