@@ -85,3 +85,17 @@ state.watchlist =
 state.watchlist.filter(x => x !== c);
 save(); renderWatchlist();
 });
+
+form.addEventListener("submit", (e) => {
+e.preventDefault();
+const amt = Number(amount.value);
+if (!amt || amt <= 0) {
+result.textContent = "Enter a valid amount.";
+return;
+}
+state.currency = select.value;
+const rate = state.rates[state.currency];
+const out = (amt * rate).toFixed(2);
+result.textContent =
+`${amt} ETB = ${out} ${state.currency}`;
+});
