@@ -86,16 +86,16 @@ state.watchlist.filter(x => x !== c);
 save(); renderWatchlist();
 });
 
-form.addEventListener("submit", (e) => {
-e.preventDefault();
-const amt = Number(amount.value);
-if (!amt || amt <= 0) {
-result.textContent = "Enter a valid amount.";
-return;
+const KEY = "birrwatch";
+// save the parts worth keeping
+function save() {
+localStorage.setItem(KEY, JSON.stringify({
+watchlist: state.watchlist,
+currency: state.currency,
+}));
 }
-state.currency = select.value;
-const rate = state.rates[state.currency];
-const out = (amt * rate).toFixed(2);
-result.textContent =
-`${amt} ETB = ${out} ${state.currency}`;
-});
+// load on startup, before the first render
+function load() {
+const saved = localStorage.getItem(KEY);
+if (saved) Object.assign(state, JSON.parse(saved));
+}
