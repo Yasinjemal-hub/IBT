@@ -33,19 +33,18 @@
  const cart=[{name:"shiro", qty:8},{name:"teff", qty:9}]
 
  function render(){
- const list=document.getElementById("list")
-    list.innerHTML=''
-    cart.forEach(item=>{
-        const li=document.createElement("li")
-        li.textContent=`${item.name} * ${item.qty}`
+ const list=document.querySelector("#list")
 
-    list.append("li")
+    list.innerHTML= ""; // clear 
+    cart.forEach(item=>{  //loop
+        const li=document.createElement("li")  // creat element
+        li.textContent=`${item.name} * ${item.qty}` //add cintent
 
-    }
         
-    )
+
+    list.append(li)  //add on the list 
+    })
  }
 
- 
- console.log()
+render() // call back
    
