@@ -1,22 +1,51 @@
-// by id — one element
-const list = document.getElementById("list");
-// CSS selector — FIRST match
-const title = document.querySelector("h1");
-const first = document.querySelector(".item");
-// CSS selector — ALL matches (NodeList)
-const items =
-document.querySelectorAll(".item");
-items.length; //
+    // // list.innerHTML=''
+    //     console.log(list)
 
-//reding content and value
+    // const title=document.querySelector("h1")
+    // title.classList.add("wake")
+    // title.style.backgroundColor="grey"
+    // console.log(title)
 
-const h1 = document.querySelector("h1");
-h1.textContent; // "Addis Market"
-// form field value
-const input = document.querySelector("#qty");
-input.value; // "3" (always a string!)
-Number(input.value); // 3
-// attributes & data-*
-const li = document.querySelector(".item");
-li.getAttribute("class"); // "item"
-li.dataset.id; // data-id="7"
+    // // const changeTitle=title.textContent="yasin"
+    
+    
+    // // console.log(changeTitle)
+
+
+    // const li=document.createElement("li")
+
+    // li.textContent="test"
+    // li.classList.add="item"
+    // li.dataset.id="12"
+
+    // list.prepend("li")
+
+
+    // console.log(li)
+
+
+    
+
+    //  const items=document.querySelector(".item")
+    //  console.log(items)
+
+    
+ const cart=[{name:"shiro", qty:8},{name:"teff", qty:9}]
+
+ function render(){
+ const list=document.getElementById("list")
+    list.innerHTML=''
+    cart.forEach(item=>{
+        const li=document.createElement("li")
+        li.textContent=`${item.name} * ${item.qty}`
+
+    list.append("li")
+
+    }
+        
+    )
+ }
+
+ 
+ console.log()
+   
