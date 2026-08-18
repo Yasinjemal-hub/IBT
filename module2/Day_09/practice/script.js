@@ -30,21 +30,38 @@
     //  console.log(items)
 
     
- const cart=[{name:"shiro", qty:8},{name:"teff", qty:9}]
+//  const cart=[{name:"shiro", qty:8},{name:"teff", qty:9}]
 
- function render(){
- const list=document.querySelector("#list")
+//  function render(){
+//  const list=document.querySelector("#list")
 
-    list.innerHTML= ""; // clear 
-    cart.forEach(item=>{  //loop
-        const li=document.createElement("li")  // creat element
-        li.textContent=`${item.name} * ${item.qty}` //add cintent
+//     list.innerHTML= ""; // clear 
+//     cart.forEach(item=>{  //loop
+//         const li=document.createElement("li")  // creat element
+//         li.textContent=`${item.name} * ${item.qty}` //add cintent
 
         
 
-    list.append(li)  //add on the list 
-    })
- }
+//     list.append(li)  //add on the list 
+//     })
+//  }
 
-render() // call back
-   
+// render() // call back
+
+// const btn=document.querySelector("#add")
+
+// console.log(btn)
+
+// btn.addEventListener("click", (e)=>{
+//     console.log("clciked")
+//     e.target
+// })
+
+
+const list = document.querySelector("#list");
+list.addEventListener("click", (e) => {
+const li = e.target.closest("li");
+if (!li) return;
+const id = li.dataset.id;
+removeItem(id); // act on that row
+});
