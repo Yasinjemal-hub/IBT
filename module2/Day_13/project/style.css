@@ -33,6 +33,7 @@ body {
 
 /* Header & Search Bar */
 header {
+ 
   background-color: var(--primary);
   color: var(--text-light);
   text-align: center;
@@ -93,7 +94,7 @@ main {
 
 /* Dish Card Container */
 .dish {
-  background-color: var(--bg-card);
+  background-color: rgb(234, 255, 1);
   border: 1px solid var(--border-line);
   border-radius: var(--radius-lg);
   padding: 1.25rem;
