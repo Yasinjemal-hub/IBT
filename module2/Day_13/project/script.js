@@ -1,5 +1,6 @@
 const search1 = document.querySelector("#search");
 const menu1 = document.querySelector("#menu");
+const cartContainer = document.querySelector("#cart");
 
 const state = {
   dishes: [],
@@ -21,22 +22,74 @@ async function loadMenu() {
 
 function display() {
   menu1.innerHTML = '';
+  
+  const term = state.Search.trim().toLowerCase();
+  
+  const shown = state.dishes.filter(d =>
+    d.name.toLowerCase().includes(term) ||
+    d.category.toLowerCase().includes(term)
+  );
 
-  state.dishes.forEach(d => {
+  shown.forEach(d => {
     const div = document.createElement("div");
-    div.classList.add("dish"); // Removed period
-   console.log(div)
+    div.classList.add("dish");
+    div.dataset.id = d.id; // Added missing dataset ID
+
     div.innerHTML = `
-      <h3>${d.name}</h3> <!-- Fixed quote -->
+      <h3>${d.name}</h3>
       <p>${d.category}</p>
-      <p>${d.price}</p>
-      <p>${d.spicy}</p>
-      <button>add</button> 
+      <p class="price">${d.price} ETB</p>
+      <p>${d.spicy ? "🌶️ Spicy" : "🌱 Mild"}</p>
+      <button class="add">Add</button> 
     `;
+    
     menu1.append(div);
   });
-  // Removed recursive display() call from here
 }
 
-// Call loadMenu on page load
+// Added missing search listener
+search1.addEventListener("input", (e) => {
+  state.Search = e.target.value;
+  display();
+});
+
+menu1.addEventListener("click", (e) => {
+  if (!e.target.matches(".add")) return;
+
+  const id = Number(e.target.closest(".dish").dataset.id);
+
+  const dish = state.dishes.find(d => d.id === id);
+  if (!dish) return;
+
+  const line = state.cart.find(i => i.id === id);
+  if (line) {
+    line.qty++;
+  } else {
+    state.cart.push({ ...dish, qty: 1 });
+  }
+
+  renderCart(); 
+});
+
+// Added missing renderCart function
+function renderCart() {
+  if (!cartContainer) return;
+
+  if (state.cart.length === 0) {
+    cartContainer.innerHTML = "<p>Your Order is empty</p>";
+    return;
+  }
+
+  const total = state.cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+
+  cartContainer.innerHTML = `
+    <h3>Your Order</h3>
+    ${state.cart.map(item => `
+      <p>${item.name} x ${item.qty} - ${item.price * item.qty} ETB</p>
+    `).join("")}
+    <hr>
+    <p><strong>Total: ${total} ETB</strong></p>
+  `;
+}
+
 loadMenu();
