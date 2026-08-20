@@ -1,0 +1,21 @@
+body{
+    background-color: rgb(225, 51, 51);
+}
+
+form{
+    border: 2px solid green;
+    width: 300px;
+    height: 100px;
+    background-color: rgb(238, 240, 234);
+}
+
+p{
+    background-color: rgb(216, 180, 135);
+    width: 450px;
+    height: 40px;
+}
+
+ul{
+    background-color: rgb(40, 168, 219);
+    width: 400px;
+}
