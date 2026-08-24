@@ -67,7 +67,7 @@ menu1.addEventListener("click", (e) => {
   } else {
     state.cart.push({ ...dish, qty: 1 });
   }
-
+  save()
   renderCart(); 
 });
 
@@ -91,5 +91,24 @@ function renderCart() {
     <p><strong>Total: ${total} ETB</strong></p>
   `;
 }
+cartContainer.addEventListener("click", (e) => {
+if (!e.target.matches(".rm")) return;
+const id = Number(e.target.closest("li").dataset.id);
+state.cart = state.cart.filter(i => i.id !== id);
+save(); render();
+});
 
+function save() {
+localStorage.setItem("addiseats",
+JSON.stringify(state.cart));
+}
+console.log(save())
+
+
+function load() {
+const s = localStorage.getItem("addiseats");
+if (s) state.cart = JSON.parse(s);
+}
+
+console.log(load())
 loadMenu();
