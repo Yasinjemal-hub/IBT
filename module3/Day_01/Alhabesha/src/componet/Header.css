@@ -1,0 +1,29 @@
+.header{
+    color: rgb(214, 25, 11);
+    text-align: center;
+    background-color: darkorange;
+    height: 80px;
+    font-size: 60px;
+    padding: 10px;
+    font-weight: 800;
+}
+.header:hover{
+    background-color: aqua;
+}
+
+*{
+    margin: 0;
+}
+
+.main{
+    background-color: darkseagreen;
+    height: 1180px;
+    color: darkorchid;
+    text-align: center;
+    padding: 20px;
+    
+}
+
+
+
+
