@@ -1,7 +1,7 @@
 .header{
-    color: rgb(214, 25, 11);
+    color: black;
     text-align: center;
-    background-color: darkorange;
+    background-color: lightgreen;
     height: 80px;
     font-size: 60px;
     padding: 10px;
@@ -15,14 +15,14 @@
     margin: 0;
 }
 
-.main{
+/* .main{
     background-color: darkseagreen;
     height: 1180px;
     color: darkorchid;
     text-align: center;
     padding: 20px;
     
-}
+} */
 
 
 
