@@ -1,6 +1,8 @@
 .card{
     background-color: lightgreen;
     text-align: center;
-    height: 100px;
+    /* height: auto; */
     margin-top: 10px;
+      display: grid;
+    grid-template-columns:repeat(4,1fr);
 }
