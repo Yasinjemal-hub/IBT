@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 
 export default function Dish({ dish, onAddToCart }) {
+  const { name, category, spicy, price } = dish; // Add this line
+  // ...
+
   const [count, setCount] = useState(0);
 
   const handleAdd = () => {
