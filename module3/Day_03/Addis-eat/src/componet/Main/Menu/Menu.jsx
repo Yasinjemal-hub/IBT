@@ -3,7 +3,6 @@ import Main from './Main';
 import SideBar from '../SideBar/SideBar';
 import CategoryBar from '../../../CategoryBar';
 import { dishes } from '../../../data';
-import './Manu.css';
 
 export default function Menu() {
   const [selectedCategory, setSelectedCategory] = useState('All');
