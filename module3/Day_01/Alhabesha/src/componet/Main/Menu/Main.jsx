@@ -1,6 +1,7 @@
 import React from 'react'
 import './Main.css'
 import Dish from './Dish/Dish'
+import { useState } from 'react'
 function Main() {
 const dish=  [
   { "id": 1, "name": "Doro Wat", "category": "Main", "price": 240, "spicy": true },
@@ -24,10 +25,11 @@ const dish=  [
   { "id": 19, "name": "Chechebsa", "category": "Breakfast", "price": 120, "spicy": true },
   { "id": 20, "name": "Kik Alicha", "category": "Vegetarian", "price": 100, "spicy": false }
 ]
+
   return (
     <div className='card'>
       {dish.map((item, index) => {
-       return <Dish key={index} dish={item}/>
+       return <Dish key={index} dish={item} onAdd={()=>addToCart(dish)}/>
         
   
        })} 

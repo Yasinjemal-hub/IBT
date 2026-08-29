@@ -1,13 +1,28 @@
 .dish_item{
     background-color: yellow;
-    height: 90px;
-    width: 90px;
+    height: 130px;
+    width: 150px;
     margin: 20px;
   
 }
 .spicy{
     color: red;
     font-size: 12px;
+}
+
+.add{
+    background-color: green;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.name{
+    font-size: 16px;
+    font-weight: bold;
+    padding: 5px 0;
 }
 
 
