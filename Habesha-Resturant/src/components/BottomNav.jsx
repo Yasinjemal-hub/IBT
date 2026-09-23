@@ -11,16 +11,18 @@ export default function BottomNav() {
       <NavLink to="/" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`} end>
         {({ isActive }) => (
           <>
-            {isActive ? <IoHome size={22} /> : <IoHomeOutline size={22} />}
-            <span>Home</span>
+            <span className="nav-icon-sparkle">{isActive ? '✨' : '✨'}</span>
+            <span>Specials</span>
           </>
         )}
       </NavLink>
       <NavLink to="/search" className={({ isActive }) => `nav-item ${isActive ? 'active' : ''}`}>
         {({ isActive }) => (
           <>
-            {isActive ? <IoSearch size={22} /> : <IoSearchOutline size={22} />}
-            <span>Explore</span>
+            <div className="nav-icon-fork">
+              {isActive ? '🍽️' : '🍽️'}
+            </div>
+            <span>Menu</span>
           </>
         )}
       </NavLink>
@@ -31,7 +33,7 @@ export default function BottomNav() {
               {isActive ? <IoCart size={24} /> : <IoCartOutline size={24} />}
               {itemCount > 0 && <span className="cart-nav-badge">{itemCount}</span>}
             </div>
-            <span>Basket</span>
+            <span>Cart</span>
           </>
         )}
       </NavLink>
@@ -39,7 +41,7 @@ export default function BottomNav() {
         {({ isActive }) => (
           <>
             {isActive ? <IoPerson size={22} /> : <IoPersonOutline size={22} />}
-            <span>Profile</span>
+            <span>Account</span>
           </>
         )}
       </NavLink>

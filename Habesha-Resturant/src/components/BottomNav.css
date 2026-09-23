@@ -57,3 +57,9 @@
     justify-content: center;
     border: 1.5px solid #fff;
 }
+
+@media (min-width: 768px) {
+    .bottom-nav {
+        display: none;
+    }
+}

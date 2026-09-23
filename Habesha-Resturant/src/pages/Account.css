@@ -1,0 +1,451 @@
+.account-page {
+    background-color: #FFFDF9;
+    min-height: 100vh;
+    font-family: 'DM Sans', 'Inter', sans-serif;
+    color: #333;
+}
+
+.account-container {
+    padding: 16px;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.welcome-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    background-color: #F8F3EA;
+    padding: 20px 16px;
+    border-radius: 12px;
+    margin-bottom: 24px;
+}
+
+.welcome-text-area {
+    flex: 1;
+    padding-right: 12px;
+}
+
+.enkuan-text {
+    font-size: 10px;
+    color: #972410;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.welcome-section h1 {
+    font-size: 20px;
+    margin: 8px 0;
+    color: #333;
+    line-height: 1.2;
+}
+
+.welcome-section p {
+    font-size: 13px;
+    color: #666;
+    margin: 0;
+    line-height: 1.4;
+}
+
+.welcome-img-wrap {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.welcome-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.quick-logins {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.telebirr-btn {
+    display: flex;
+    align-items: center;
+    background-color: #F1F5FA;
+    border: none;
+    border-radius: 8px;
+    padding: 12px;
+    cursor: pointer;
+    text-align: left;
+}
+
+.telebirr-icon {
+    width: 32px;
+    height: 32px;
+    background-color: #0077FF;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 12px;
+    color: #FFF;
+    font-size: 16px;
+}
+
+.telebirr-text {
+    flex: 1;
+}
+
+.telebirr-text h4 {
+    margin: 0;
+    font-size: 14px;
+    color: #000;
+}
+
+.telebirr-text p {
+    margin: 2px 0 0;
+    font-size: 11px;
+    color: #666;
+}
+
+.lightning-icon {
+    color: #000;
+}
+
+.google-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #FFF6F5;
+    border: none;
+    border-radius: 8px;
+    padding: 14px;
+    font-size: 14px;
+    font-weight: 600;
+    gap: 12px;
+    cursor: pointer;
+    color: #333;
+}
+
+.divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.divider::before,
+.divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #EAE2D3;
+}
+
+.divider span {
+    padding: 0 16px;
+    color: #A0988A;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.login-tabs {
+    display: flex;
+    background-color: #F4EBE0;
+    border-radius: 8px;
+    padding: 4px;
+    margin-bottom: 20px;
+}
+
+.login-tab {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 0;
+    border: none;
+    background: transparent;
+    color: #8A7A64;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.login-tab.active {
+    background-color: #FFFFFF;
+    color: #972410;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.label-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.form-group label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #333;
+}
+
+.network-hint {
+    font-size: 11px;
+    color: #972410;
+}
+
+.input-wrapper {
+    display: flex;
+    align-items: center;
+    background-color: #FFFFFF;
+    border: 1px solid #EAE2D3;
+    border-radius: 8px;
+    height: 48px;
+    overflow: hidden;
+}
+
+.country-code {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 0 12px;
+    background-color: #F8F3EA;
+    height: 100%;
+    border-right: 1px solid #EAE2D3;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.flag {
+    font-size: 16px;
+}
+
+.dropdown-arrow {
+    font-size: 10px;
+    color: #666;
+}
+
+.input-wrapper input {
+    flex: 1;
+    border: none;
+    background: transparent;
+    padding: 0 16px;
+    font-size: 15px;
+    outline: none;
+    color: #333;
+}
+
+.input-wrapper input::placeholder {
+    color: #CCC;
+    letter-spacing: 2px;
+}
+
+.input-icon-left {
+    margin-left: 16px;
+}
+
+.input-icon-right {
+    margin-right: 16px;
+    cursor: pointer;
+}
+
+.form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: #666;
+    cursor: pointer;
+}
+
+.checkbox-label input {
+    accent-color: #972410;
+    width: 16px;
+    height: 16px;
+}
+
+.forgot-link {
+    font-size: 13px;
+    font-weight: 600;
+    color: #972410;
+    text-decoration: none;
+}
+
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.sign-in-btn {
+    background-color: #972410;
+    color: #FFF;
+    border: none;
+    border-radius: 8px;
+    height: 52px;
+    font-size: 15px;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(151, 36, 16, 0.3);
+}
+
+.guest-btn {
+    background-color: #F8F3EA;
+    color: #333;
+    border: none;
+    border-radius: 8px;
+    height: 52px;
+    font-size: 15px;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.register-card {
+    display: flex;
+    align-items: center;
+    background-color: #FFF7ED;
+    padding: 16px;
+    border-radius: 8px;
+    margin-bottom: 24px;
+    gap: 12px;
+}
+
+.register-icon {
+    background-color: #FCDA9C;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+}
+
+.register-info {
+    flex: 1;
+}
+
+.register-info h4 {
+    margin: 0 0 4px;
+    font-size: 13px;
+    color: #000;
+}
+
+.register-info p {
+    margin: 0;
+    font-size: 11px;
+    color: #666;
+}
+
+.register-link {
+    color: #972410;
+    font-weight: 700;
+    font-size: 13px;
+    text-decoration: none;
+}
+
+.benefits-section {
+    margin-bottom: 40px;
+}
+
+.benefits-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.benefits-header h4 {
+    margin: 0;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.star-icon {
+    color: #B08945;
+}
+
+.tier-badge {
+    font-size: 10px;
+    font-weight: 700;
+    color: #B08945;
+    letter-spacing: 1px;
+}
+
+.benefits-cards {
+    display: flex;
+    gap: 8px;
+}
+
+.benefit-card {
+    flex: 1;
+    background-color: #FFF6F5;
+    border-radius: 8px;
+    padding: 12px;
+    text-align: center;
+}
+
+.benefit-icon {
+    display: inline-block;
+    font-size: 18px;
+    color: #D4380D;
+    background-color: #FFFFFF;
+    width: 32px;
+    height: 32px;
+    line-height: 32px;
+    border-radius: 50%;
+    margin-bottom: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.benefit-card h5 {
+    margin: 0 0 4px;
+    font-size: 11px;
+    color: #333;
+}
+
+.benefit-card p {
+    margin: 0;
+    font-size: 9px;
+    color: #666;
+}
+
+.footer-slogan {
+    text-align: center;
+    font-size: 12px;
+    color: #8A7A64;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding-bottom: 20px;
+}
+
+.slogan-icon {
+    color: #B08945;
+}

@@ -120,3 +120,45 @@
 .cart-btn {
   text-decoration: none;
 }
+
+.desktop-nav {
+  display: none;
+}
+
+.desktop-flex {
+  display: none !important;
+}
+
+@media (min-width: 768px) {
+  .app-header {
+    padding: 16px 40px;
+  }
+
+  .mobile-only {
+    display: none !important;
+  }
+
+  .desktop-flex {
+    display: flex !important;
+  }
+
+  .desktop-nav {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+  }
+
+  .desktop-nav a {
+    font-size: 16px;
+    font-weight: 500;
+    color: #666;
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .desktop-nav a:hover,
+  .desktop-nav a.active {
+    color: #D4380D;
+    font-weight: 600;
+  }
+}
