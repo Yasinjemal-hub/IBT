@@ -4,6 +4,11 @@ const CartContext = createContext(null);
 
 const cartReducer = (state, action) => {
   switch (action.type) {
+    case 'additional':{
+      const addit=state.items.findIndex((item)=>{
+item.dish.id== +1
+      })
+    }
     case 'ADD_ITEM': {
       const existingIndex = state.items.findIndex(
         (item) =>
@@ -61,7 +66,8 @@ const cartReducer = (state, action) => {
 
 const initialState = {
   items: [],
-  deliveryType: 'delivery', // 'delivery' | 'pickup'
+  additional,
+  deliveryType: 'delivery', 
   deliveryZone: null,
   paymentMethod: null,
   promo: null,
