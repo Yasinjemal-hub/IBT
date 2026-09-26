@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { IoCallOutline, IoLocationOutline, IoCheckmarkCircle, IoCardOutline, IoChevronDown } from 'react-icons/io5';
+import { IoCallOutline, IoLocationOutline, IoCheckmarkCircle, IoChevronDown, IoAlertCircle } from 'react-icons/io5';
 import { MdDeliveryDining, MdStorefront, MdOutlinePayment } from 'react-icons/md';
 import { HiOutlineCreditCard } from 'react-icons/hi2';
 import Header from '../components/Header';
 import { useCart } from '../context/CartContext';
 import { paymentMethods, deliveryZones } from '../data/mockData';
+import { checkoutFormSchema, validateForm } from '../validation/schemas';
 import './Checkout.css';
 
 export default function Checkout() {
@@ -32,6 +33,9 @@ export default function Checkout() {
   const [showZones, setShowZones] = useState(false);
   const [orderPlaced, setOrderPlaced] = useState(false);
   const [phoneInput, setPhoneInput] = useState('');
+  const [errors, setErrors] = useState({});
+  const [touched, setTouched] = useState({});
+  const [shakeFields, setShakeFields] = useState({});
 
   useEffect(() => {
     if (items.length === 0 && !orderPlaced) {
@@ -43,12 +47,75 @@ export default function Checkout() {
     return null;
   }
 
+  const markTouched = (field) => {
+    setTouched((prev) => ({ ...prev, [field]: true }));
+  };
+
+  const getFormData = () => ({
+    recipient: {
+      name: recipient.name,
+      phone: recipient.phone,
+    },
+    deliveryType,
+    deliveryAddress: deliveryType === 'delivery' ? {
+      city: deliveryAddress.city,
+      subCity: deliveryAddress.subCity,
+      kebele: deliveryAddress.kebele,
+      building: deliveryAddress.building || undefined,
+    } : undefined,
+    paymentMethod: paymentMethod || '',
+    telebirrPhone: paymentMethod === 'telebirr' ? phoneInput : undefined,
+  });
+
+  const doValidation = () => {
+    const result = validateForm(checkoutFormSchema, getFormData());
+    setErrors(result.errors);
+    return result.success;
+  };
+
   const handlePlaceOrder = () => {
+    // Touch all fields
+    setTouched({
+      'recipient.name': true,
+      'recipient.phone': true,
+      paymentMethod: true,
+      'deliveryAddress.subCity': true,
+      'deliveryAddress.kebele': true,
+      telebirrPhone: true,
+    });
+
+    if (!doValidation()) {
+      // Trigger shake animation on error fields
+      const result = validateForm(checkoutFormSchema, getFormData());
+      const newShake = {};
+      Object.keys(result.errors).forEach((key) => { newShake[key] = true; });
+      setShakeFields(newShake);
+      setTimeout(() => setShakeFields({}), 600);
+      return;
+    }
+
     setOrderPlaced(true);
     setTimeout(() => {
       clearCart();
       navigate('/');
     }, 3000);
+  };
+
+  // Real-time validation on change
+  useEffect(() => {
+    if (Object.keys(touched).length > 0) {
+      doValidation();
+    }
+  }, [recipient.name, recipient.phone, deliveryType, deliveryAddress, paymentMethod, phoneInput]);
+
+  const getError = (field) => {
+    return touched[field] ? errors[field] : null;
+  };
+
+  const fieldClass = (field) => {
+    const err = getError(field);
+    const shake = shakeFields[field];
+    return `form-input ${err ? 'input-error' : ''} ${shake ? 'shake' : ''}`;
   };
 
   if (orderPlaced) {
@@ -99,22 +166,36 @@ export default function Checkout() {
           <div className="form-group">
             <input
               type="text"
-              className="form-input"
+              className={fieldClass('recipient.name')}
               placeholder="Abebe Bekele"
               value={recipient.name}
               onChange={(e) => setRecipient({ name: e.target.value })}
+              onBlur={() => markTouched('recipient.name')}
+              id="checkout-recipient-name"
             />
+            {getError('recipient.name') && (
+              <span className="field-error">
+                <IoAlertCircle size={13} /> {getError('recipient.name')}
+              </span>
+            )}
           </div>
           <div className="form-group phone-group">
             <span className="phone-prefix">🇪🇹 +251</span>
             <input
               type="tel"
-              className="form-input phone-input"
+              className={`${fieldClass('recipient.phone')} phone-input`}
               placeholder="9XX XXX XXXX"
               value={recipient.phone}
               onChange={(e) => setRecipient({ phone: e.target.value })}
+              onBlur={() => markTouched('recipient.phone')}
+              id="checkout-recipient-phone"
             />
           </div>
+          {getError('recipient.phone') && (
+            <span className="field-error">
+              <IoAlertCircle size={13} /> {getError('recipient.phone')}
+            </span>
+          )}
         </div>
 
         {/* Delivery Destination */}
@@ -131,28 +212,43 @@ export default function Checkout() {
                 placeholder="Addis Ababa"
                 value={deliveryAddress.city}
                 onChange={(e) => setDeliveryAddress({ city: e.target.value })}
+                id="checkout-city"
               />
             </div>
             <div className="form-row">
               <div className="form-group half">
                 <input
                   type="text"
-                  className="form-input"
+                  className={fieldClass('deliveryAddress.subCity')}
                   placeholder="Sub-City / Metropolitanship"
                   value={deliveryAddress.subCity}
                   onChange={(e) => setDeliveryAddress({ subCity: e.target.value })}
+                  onBlur={() => markTouched('deliveryAddress.subCity')}
+                  id="checkout-subcity"
                 />
+                {getError('deliveryAddress.subCity') && (
+                  <span className="field-error">
+                    <IoAlertCircle size={13} /> {getError('deliveryAddress.subCity')}
+                  </span>
+                )}
               </div>
             </div>
             <div className="form-row">
               <div className="form-group half">
                 <input
                   type="text"
-                  className="form-input"
+                  className={fieldClass('deliveryAddress.kebele')}
                   placeholder="Kebele/Ally / Take/Flat area"
                   value={deliveryAddress.kebele}
                   onChange={(e) => setDeliveryAddress({ kebele: e.target.value })}
+                  onBlur={() => markTouched('deliveryAddress.kebele')}
+                  id="checkout-kebele"
                 />
+                {getError('deliveryAddress.kebele') && (
+                  <span className="field-error">
+                    <IoAlertCircle size={13} /> {getError('deliveryAddress.kebele')}
+                  </span>
+                )}
               </div>
             </div>
             <div className="form-group">
@@ -162,6 +258,7 @@ export default function Checkout() {
                 placeholder="Behind CompAut/Dep Bldg (Landmark...)"
                 value={deliveryAddress.building}
                 onChange={(e) => setDeliveryAddress({ building: e.target.value })}
+                id="checkout-building"
               />
             </div>
 
@@ -203,12 +300,17 @@ export default function Checkout() {
             <MdOutlinePayment size={18} />
             <span>Payment Method</span>
           </div>
+          {getError('paymentMethod') && (
+            <span className="field-error" style={{ marginBottom: 8, display: 'block' }}>
+              <IoAlertCircle size={13} /> {getError('paymentMethod')}
+            </span>
+          )}
           <div className="payment-methods">
             {paymentMethods.map((method) => (
               <button
                 key={method.id}
                 className={`payment-option ${paymentMethod === method.id ? 'active' : ''}`}
-                onClick={() => setPaymentMethod(method.id)}
+                onClick={() => { setPaymentMethod(method.id); markTouched('paymentMethod'); }}
               >
                 <div className="payment-option-left">
                   <span className="payment-icon">{method.icon}</span>
@@ -226,12 +328,19 @@ export default function Checkout() {
               <span className="phone-prefix">🇪🇹 +251</span>
               <input
                 type="tel"
-                className="form-input phone-input"
+                className={`${fieldClass('telebirrPhone')} phone-input`}
                 placeholder="9XX XXX XXXX"
                 value={phoneInput}
                 onChange={(e) => setPhoneInput(e.target.value)}
+                onBlur={() => markTouched('telebirrPhone')}
+                id="checkout-telebirr-phone"
               />
             </div>
+          )}
+          {getError('telebirrPhone') && (
+            <span className="field-error">
+              <IoAlertCircle size={13} /> {getError('telebirrPhone')}
+            </span>
           )}
         </div>
 
@@ -276,7 +385,6 @@ export default function Checkout() {
         <button
           className="place-order-btn"
           onClick={handlePlaceOrder}
-          disabled={!paymentMethod}
         >
           <HiOutlineCreditCard size={20} />
           Place Order · ETB {grandTotal.toLocaleString()}

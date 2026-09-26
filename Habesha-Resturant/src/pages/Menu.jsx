@@ -1,20 +1,29 @@
-import { useState, useMemo } from 'react';
-import { IoSearch, IoOptionsOutline, IoStar, IoAdd } from 'react-icons/io5';
+import { useState, useMemo, useEffect } from 'react';
+import { IoOptionsOutline, IoStar, IoAdd } from 'react-icons/io5';
+import { useSearchParams } from 'react-router-dom';
 import Header from '../components/Header';
 import BottomNav from '../components/BottomNav';
+import SearchAutocomplete from '../components/SearchAutocomplete';
 import { dishes } from '../data/mockData';
 import { useCart } from '../context/CartContext';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import './Menu.css';
 
 export default function Menu() {
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchParams] = useSearchParams();
+  const initialQuery = searchParams.get('q') || '';
+  const [searchQuery, setSearchQuery] = useState(initialQuery);
   const [activeTab, setActiveTab] = useState('All Dishes');
   const { addItem, items, grandTotal, itemCount } = useCart();
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const q = searchParams.get('q');
+    if (q) setSearchQuery(q);
+  }, [searchParams]);
+
   const tabs = [
-    { label: 'All Dishes', count: 14 },
+    { label: 'All Dishes', count: dishes.length },
     { label: '🌾 100% Pure Teff Injera', count: null },
     { label: '🌿 Fasting / Tsom Friendly', count: null },
     { label: 'Traditional Stews & Wat', count: null }
@@ -22,35 +31,57 @@ export default function Menu() {
 
   const filteredDishes = useMemo(() => {
     let result = dishes;
+
+    // Filter by tab
+    if (activeTab === '🌿 Fasting / Tsom Friendly') {
+      result = result.filter(d => d.category === 'vegetarian');
+    } else if (activeTab === 'Traditional Stews & Wat') {
+      result = result.filter(d => d.category === 'special');
+    }
+
+    // Filter by search
     if (searchQuery) {
+      const q = searchQuery.toLowerCase();
       result = result.filter(d => 
-        d.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
-        d.description.toLowerCase().includes(searchQuery.toLowerCase())
+        d.name.toLowerCase().includes(q) || 
+        d.nameAmharic.includes(searchQuery) ||
+        d.description.toLowerCase().includes(q) ||
+        d.category.toLowerCase().includes(q) ||
+        d.tags?.some(t => t.toLowerCase().includes(q))
       );
     }
     return result;
-  }, [searchQuery]);
+  }, [searchQuery, activeTab]);
 
-  // cartItemCount is already populated by context
+  const handleSearch = (query) => {
+    setSearchQuery(query);
+  };
 
   return (
     <div className="menu-page">
       <Header />
       
       <div className="menu-search-container">
-        <div className="search-input-wrapper">
-          <IoSearch className="search-icon" size={18} />
-          <input 
-            type="text" 
-            placeholder="Search dishes (Kitfo, Shiro, Tibs...)" 
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          />
-        </div>
+        <SearchAutocomplete onSearch={handleSearch} />
         <button className="filter-button">
           <IoOptionsOutline size={20} />
         </button>
       </div>
+
+      {/* Active search indicator */}
+      {searchQuery && (
+        <div className="search-active-bar">
+          <span className="search-active-text">
+            Showing results for "<strong>{searchQuery}</strong>"
+          </span>
+          <button 
+            className="search-clear-filter" 
+            onClick={() => setSearchQuery('')}
+          >
+            Clear
+          </button>
+        </div>
+      )}
 
       <div className="menu-tabs-wrapper">
         {tabs.map((tab) => (
@@ -75,6 +106,13 @@ export default function Menu() {
       </div>
 
       <div className="menu-dish-list">
+        {filteredDishes.length === 0 && (
+          <div className="menu-empty-state">
+            <span className="empty-icon">🍽️</span>
+            <h3>No dishes found</h3>
+            <p>Try a different search term or browse our categories</p>
+          </div>
+        )}
         {filteredDishes.map(dish => (
           <div key={dish.id} className="menu-dish-card" onClick={() => navigate(`/dish/${dish.id}`)}>
             <div className="menu-dish-img-wrap">

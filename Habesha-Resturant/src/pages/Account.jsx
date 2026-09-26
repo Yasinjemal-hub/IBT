@@ -1,12 +1,71 @@
 import { useState } from 'react';
 import Header from '../components/Header';
 import BottomNav from '../components/BottomNav';
-import { IoLockClosedOutline, IoEyeOutline, IoMailOutline, IoPhonePortraitOutline, IoArrowForward, IoClose } from 'react-icons/io5';
-import mesobTableImg from '../assets/images/royal_platter.png'; // Will use existing image as a placeholder for the welcome icon
+import { IoLockClosedOutline, IoEyeOutline, IoEyeOffOutline, IoMailOutline, IoPhonePortraitOutline, IoArrowForward, IoClose, IoAlertCircle } from 'react-icons/io5';
+import { loginPhoneSchema, loginEmailSchema, validateForm } from '../validation/schemas';
+import mesobTableImg from '../assets/images/royal_platter.png';
 import './Account.css';
 
 export default function Account() {
   const [loginMethod, setLoginMethod] = useState('phone'); // 'phone' | 'email'
+  const [phoneValue, setPhoneValue] = useState('');
+  const [emailValue, setEmailValue] = useState('');
+  const [passwordValue, setPasswordValue] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
+  const [errors, setErrors] = useState({});
+  const [touched, setTouched] = useState({});
+  const [shakeFields, setShakeFields] = useState({});
+
+  const markTouched = (field) => {
+    setTouched((prev) => ({ ...prev, [field]: true }));
+  };
+
+  const doValidation = () => {
+    const schema = loginMethod === 'phone' ? loginPhoneSchema : loginEmailSchema;
+    const data = loginMethod === 'phone'
+      ? { phone: phoneValue, password: passwordValue }
+      : { email: emailValue, password: passwordValue };
+    const result = validateForm(schema, data);
+    setErrors(result.errors);
+    return result;
+  };
+
+  const getError = (field) => {
+    return touched[field] ? errors[field] : null;
+  };
+
+  const fieldClass = (field, base = 'account-input') => {
+    const err = getError(field);
+    const shake = shakeFields[field];
+    return `${base} ${err ? 'input-error' : ''} ${shake ? 'shake' : ''}`;
+  };
+
+  const handleSignIn = (e) => {
+    e.preventDefault();
+    // Touch all fields
+    if (loginMethod === 'phone') {
+      setTouched({ phone: true, password: true });
+    } else {
+      setTouched({ email: true, password: true });
+    }
+    const result = doValidation();
+    if (!result.success) {
+      const newShake = {};
+      Object.keys(result.errors).forEach((key) => { newShake[key] = true; });
+      setShakeFields(newShake);
+      setTimeout(() => setShakeFields({}), 600);
+      return;
+    }
+    // Validation passed — would send to API
+    alert('Login successful! 🎉 (Demo)');
+  };
+
+  // Clear errors when switching methods
+  const switchMethod = (method) => {
+    setLoginMethod(method);
+    setErrors({});
+    setTouched({});
+  };
 
   return (
     <div className="account-page">
@@ -34,7 +93,6 @@ export default function Account() {
                <h4>Telebirr SuperApp Fast Login</h4>
                <p>Instant one-tap verification via Ethio Telecom</p>
              </div>
-             {/* <IoLightning className="lightning-icon" size={18} /> */}
           </button>
           
           <button className="google-btn">
@@ -50,66 +108,103 @@ export default function Account() {
         <div className="login-tabs">
           <button 
             className={`login-tab ${loginMethod === 'phone' ? 'active' : ''}`}
-            onClick={() => setLoginMethod('phone')}
+            onClick={() => switchMethod('phone')}
           >
             <IoPhonePortraitOutline size={18} />
             Ethiopian Mobile (+251)
           </button>
           <button 
             className={`login-tab ${loginMethod === 'email' ? 'active' : ''}`}
-            onClick={() => setLoginMethod('email')}
+            onClick={() => switchMethod('email')}
           >
             <IoMailOutline size={18} />
             Email Address
           </button>
         </div>
 
-        <div className="form-group">
-          <div className="label-row">
-            <label>{loginMethod === 'phone' ? 'Mobile Number' : 'Email Address'}</label>
-            {loginMethod === 'phone' && <span className="network-hint">Ethio Telecom / Safaricom</span>}
+        <form onSubmit={handleSignIn} noValidate>
+          <div className="form-group">
+            <div className="label-row">
+              <label>{loginMethod === 'phone' ? 'Mobile Number' : 'Email Address'}</label>
+              {loginMethod === 'phone' && <span className="network-hint">Ethio Telecom / Safaricom</span>}
+            </div>
+            <div className="input-wrapper">
+               {loginMethod === 'phone' && (
+                 <div className="country-code">
+                   <span className="flag">🇪🇹</span>
+                   <span>+251</span>
+                   <span className="dropdown-arrow">▼</span>
+                 </div>
+               )}
+               <input 
+                 type={loginMethod === 'phone' ? 'tel' : 'email'} 
+                 placeholder={loginMethod === 'phone' ? '91123 4567' : 'name@example.com'} 
+                 className={fieldClass(loginMethod === 'phone' ? 'phone' : 'email', '')}
+                 value={loginMethod === 'phone' ? phoneValue : emailValue}
+                 onChange={(e) => {
+                   loginMethod === 'phone' ? setPhoneValue(e.target.value) : setEmailValue(e.target.value);
+                 }}
+                 onBlur={() => markTouched(loginMethod === 'phone' ? 'phone' : 'email')}
+                 id="login-identity-input"
+               />
+            </div>
+            {getError(loginMethod === 'phone' ? 'phone' : 'email') && (
+              <span className="field-error">
+                <IoAlertCircle size={13} /> {getError(loginMethod === 'phone' ? 'phone' : 'email')}
+              </span>
+            )}
           </div>
-          <div className="input-wrapper">
-             {loginMethod === 'phone' && (
-               <div className="country-code">
-                 <span className="flag">🇪🇹</span>
-                 <span>+251</span>
-                 <span className="dropdown-arrow">▼</span>
-               </div>
-             )}
-             <input 
-               type={loginMethod === 'phone' ? 'tel' : 'email'} 
-               placeholder={loginMethod === 'phone' ? '91123 4567' : 'name@example.com'} 
-             />
+
+          <div className="form-group">
+            <label>Secret Password / PIN</label>
+            <div className="input-wrapper">
+               <IoLockClosedOutline color="#A0988A" size={18} className="input-icon-left" />
+               <input 
+                 type={showPassword ? 'text' : 'password'} 
+                 placeholder="••••••••" 
+                 className={fieldClass('password', '')}
+                 value={passwordValue}
+                 onChange={(e) => setPasswordValue(e.target.value)}
+                 onBlur={() => markTouched('password')}
+                 id="login-password-input"
+               />
+               <button 
+                 type="button"
+                 className="password-toggle-btn"
+                 onClick={() => setShowPassword(!showPassword)}
+                 tabIndex={-1}
+               >
+                 {showPassword 
+                   ? <IoEyeOffOutline color="#A0988A" size={18} /> 
+                   : <IoEyeOutline color="#A0988A" size={18} />
+                 }
+               </button>
+            </div>
+            {getError('password') && (
+              <span className="field-error">
+                <IoAlertCircle size={13} /> {getError('password')}
+              </span>
+            )}
           </div>
-        </div>
 
-        <div className="form-group">
-          <label>Secret Password / PIN</label>
-          <div className="input-wrapper">
-             <IoLockClosedOutline color="#A0988A" size={18} className="input-icon-left" />
-             <input type="password" placeholder="••••••••" />
-             <IoEyeOutline color="#A0988A" size={18} className="input-icon-right" />
+          <div className="form-options">
+            <label className="checkbox-label">
+              <input type="checkbox" />
+              <span className="checkmark"></span>
+              Remember me on this phone
+            </label>
+            <a href="#" className="forgot-link">Forgot PIN?</a>
           </div>
-        </div>
 
-        <div className="form-options">
-          <label className="checkbox-label">
-            <input type="checkbox" />
-            <span className="checkmark"></span>
-            Remember me on this phone
-          </label>
-          <a href="#" className="forgot-link">Forgot PIN?</a>
-        </div>
-
-        <div className="action-buttons">
-          <button className="sign-in-btn">
-            Sign In to Mesob House <IoArrowForward size={18} />
-          </button>
-          <button className="guest-btn">
-            Continue as Guest <IoClose size={18} />
-          </button>
-        </div>
+          <div className="action-buttons">
+            <button type="submit" className="sign-in-btn" id="sign-in-button">
+              Sign In to Mesob House <IoArrowForward size={18} />
+            </button>
+            <button type="button" className="guest-btn">
+              Continue as Guest <IoClose size={18} />
+            </button>
+          </div>
+        </form>
 
         <div className="register-card">
            <div className="register-icon">🎉</div>

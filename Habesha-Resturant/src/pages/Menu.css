@@ -12,6 +12,61 @@
     gap: 12px;
 }
 
+/* Override dark SearchAutocomplete bar for the light Menu page */
+.menu-search-container .search-input-bar {
+    background: #F8F3EA;
+    border-color: rgba(107, 94, 74, 0.15);
+}
+
+.menu-search-container .search-input-bar:focus-within {
+    border-color: #972410;
+    box-shadow: 0 0 0 3px rgba(151, 36, 16, 0.1);
+}
+
+.menu-search-container .search-bar-input {
+    color: #333;
+}
+
+.menu-search-container .search-bar-input::placeholder {
+    color: #A0988A;
+}
+
+.menu-search-container .search-dropdown {
+    background: #FFFFFF;
+    border-color: rgba(107, 94, 74, 0.15);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+}
+
+.menu-search-container .search-result-item {
+    color: #333;
+}
+
+.menu-search-container .search-result-item:hover,
+.menu-search-container .search-result-item.highlighted {
+    background: #FDF7EF;
+}
+
+.menu-search-container .search-result-name {
+    color: #333;
+}
+
+.menu-search-container .search-section-header {
+    color: #6B5E4A;
+}
+
+.menu-search-container .search-recent-item {
+    color: #6B5E4A;
+}
+
+.menu-search-container .search-recent-item:hover {
+    background: #FDF7EF;
+    color: #333;
+}
+
+.menu-search-container .search-no-results {
+    color: #6B5E4A;
+}
+
 .search-input-wrapper {
     flex: 1;
     display: flex;
@@ -341,4 +396,64 @@
     align-items: center;
     gap: 6px;
     cursor: pointer;
+}
+
+/* ─── Search Active Bar ─── */
+.search-active-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 16px;
+    margin: 0 16px 8px;
+    background: #FDF7EF;
+    border-radius: 10px;
+    border: 1px solid rgba(151, 36, 16, 0.12);
+}
+
+.search-active-text {
+    font-size: 0.82rem;
+    color: #6B5E4A;
+}
+
+.search-active-text strong {
+    color: #972410;
+}
+
+.search-clear-filter {
+    background: none;
+    border: none;
+    color: #D4380D;
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* ─── Empty State ─── */
+.menu-empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 48px 24px;
+    text-align: center;
+}
+
+.menu-empty-state .empty-icon {
+    font-size: 3rem;
+    opacity: 0.4;
+    margin-bottom: 12px;
+}
+
+.menu-empty-state h3 {
+    margin: 0 0 8px;
+    color: #333;
+    font-size: 1.1rem;
+}
+
+.menu-empty-state p {
+    margin: 0;
+    color: #999;
+    font-size: 0.85rem;
 }
