@@ -8,6 +8,8 @@ export default function Menu() {
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [totalETB, setTotalETB] = useState(0);
 
+  const createContext = React.createContext();
+
   const handleAddToCart = (price) => {
     setTotalETB((prev) => prev + price);
   };
