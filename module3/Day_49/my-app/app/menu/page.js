@@ -28,7 +28,12 @@ export default async function MenuPage() {
               <p>{dish.description}</p>
 
               <div className="card-actions">
-                <Link href={`/menu/${dish.id}`} className="secondary-btn small-btn">Details</Link>
+                <Link
+                  href={`/menu/${dish.id}`}
+                  className="secondary-btn small-btn"
+                >
+                  Details
+                </Link>
                 <AddToCartBtn dish={dish} />
               </div>
             </div>

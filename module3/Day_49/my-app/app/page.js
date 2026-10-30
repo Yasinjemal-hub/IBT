@@ -11,11 +11,16 @@ export default function Home() {
           <p className="eyebrow">Authentic Ethiopian cuisine</p>
           <h1>Freshly made, richly spiced, and deeply comforting.</h1>
           <p className="subtitle">
-            Addis Eats brings you vibrant family recipes, warm hospitality, and a menu filled with unforgettable flavors.
+            Addis Eats brings you vibrant family recipes, warm hospitality, and
+            a menu filled with unforgettable flavors.
           </p>
           <div className="action-row">
-            <Link href="/menu" className="primary-btn">Explore Menu</Link>
-            <Link href="/checkout" className="secondary-btn">View Basket</Link>
+            <Link href="/menu" className="primary-btn">
+              Explore Menu
+            </Link>
+            <Link href="/checkout" className="secondary-btn">
+              View Basket
+            </Link>
           </div>
           <ul className="feature-list">
             <li>Freshly baked injera</li>
@@ -49,7 +54,9 @@ export default function Home() {
                   <span>{dish.price} ETB</span>
                 </div>
                 <p>{dish.description}</p>
-                <Link href={`/menu/${dish.id}`} className="text-link">See details</Link>
+                <Link href={`/menu/${dish.id}`} className="text-link">
+                  See details
+                </Link>
               </div>
             </article>
           ))}

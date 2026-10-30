@@ -11,7 +11,9 @@ export default async function DishDetailPage({ params }) {
 
   return (
     <div className="detail-page">
-      <Link href="/menu" className="secondary-btn small-btn back-link">← Back to menu</Link>
+      <Link href="/menu" className="secondary-btn small-btn back-link">
+        ← Back to menu
+      </Link>
 
       <div className="detail-layout">
         <img src={dish.image} alt={dish.name} className="detail-image" />

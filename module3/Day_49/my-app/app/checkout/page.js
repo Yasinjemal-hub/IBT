@@ -43,22 +43,44 @@ export default function CheckoutPage() {
       </div>
 
       {!items.length ? (
-        <div className="dish-card" style={{ padding: "32px", maxWidth: "700px" }}>
-          <p style={{ margin: 0, color: "#625a57" }}>Your cart is empty. Add a few dishes from the menu to continue.</p>
-          <Link href="/menu" className="primary-btn" style={{ marginTop: "18px" }}>Browse menu</Link>
+        <div
+          className="dish-card"
+          style={{ padding: "32px", maxWidth: "700px" }}
+        >
+          <p style={{ margin: 0, color: "#625a57" }}>
+            Your cart is empty. Add a few dishes from the menu to continue.
+          </p>
+          <Link
+            href="/menu"
+            className="primary-btn"
+            style={{ marginTop: "18px" }}
+          >
+            Browse menu
+          </Link>
         </div>
       ) : (
         <div className="detail-layout" style={{ alignItems: "flex-start" }}>
           <div className="dish-card" style={{ padding: "20px" }}>
             {items.map((item) => (
-              <div key={item.id} style={{ display: "flex", justifyContent: "space-between", gap: "14px", padding: "12px 0", borderBottom: "1px solid #eadac7" }}>
+              <div
+                key={item.id}
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  gap: "14px",
+                  padding: "12px 0",
+                  borderBottom: "1px solid #eadac7",
+                }}
+              >
                 <div>
                   <strong>{item.name}</strong>
                   <div style={{ color: "#625a57", marginTop: "4px" }}>
                     Qty: {item.quantity} • {item.price} ETB each
                   </div>
                 </div>
-                <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+                <div
+                  style={{ display: "flex", alignItems: "center", gap: "12px" }}
+                >
                   <span>{item.quantity * item.price} ETB</span>
                   <button
                     onClick={() => removeFromCart(item.id)}
@@ -83,13 +105,24 @@ export default function CheckoutPage() {
                 <span>Tax</span>
                 <strong>{tax.toFixed(2)} ETB</strong>
               </div>
-              <div style={{ display: "flex", justifyContent: "space-between", fontSize: "1.2rem", color: "#1f1b1a" }}>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  fontSize: "1.2rem",
+                  color: "#1f1b1a",
+                }}
+              >
                 <span>Total</span>
                 <strong>{grandTotal.toFixed(2)} ETB</strong>
               </div>
             </div>
 
-            <button className="primary-btn" style={{ width: "100%", marginTop: "20px" }} onClick={handlePlaceOrder}>
+            <button
+              className="primary-btn"
+              style={{ width: "100%", marginTop: "20px" }}
+              onClick={handlePlaceOrder}
+            >
               Place Order
             </button>
           </div>

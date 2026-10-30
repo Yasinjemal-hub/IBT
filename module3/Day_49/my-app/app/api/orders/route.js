@@ -6,13 +6,19 @@ export async function POST(request) {
   const sessionToken = cookieStore.get("session_id");
 
   if (!sessionToken || !sessionToken.value) {
-    return NextResponse.json({ error: "Unauthorized. Please sign in." }, { status: 401 });
+    return NextResponse.json(
+      { error: "Unauthorized. Please sign in." },
+      { status: 401 },
+    );
   }
 
   const body = await request.json();
 
   if (body.userId !== sessionToken.value) {
-    return NextResponse.json({ error: "Forbidden. Invalid record ownership." }, { status: 403 });
+    return NextResponse.json(
+      { error: "Forbidden. Invalid record ownership." },
+      { status: 403 },
+    );
   }
 
   return NextResponse.json({ success: true, orderId: `ORD-${Date.now()}` });
