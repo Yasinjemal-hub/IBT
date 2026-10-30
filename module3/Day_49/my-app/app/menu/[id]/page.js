@@ -1,23 +1,32 @@
-// app/menu/[id]/page.js
-import { DISHES, getDishById } from "@/app/lib/dishes";
+import { getDishById } from "@/app/lib/dishes";
+import Link from "next/link";
 import { notFound } from "next/navigation";
-
-// Pre-builds dynamic dish pages at build time
-export async function generateStaticParams() {
-  return DISHES.map((dish) => ({ id: dish.id }));
-}
+import AddToCartBtn from "../AddToCartBtn";
 
 export default async function DishDetailPage({ params }) {
-  const dish = await getDishById(params.id);
+  const { id } = await params;
+  const dish = await getDishById(id);
 
   if (!dish) notFound();
 
   return (
-    <div style={{ maxWidth: "600px" }}>
-      <h1>{dish.name}</h1>
-      <span style={{ background: "#f0f0f0", padding: "4px 8px", borderRadius: "4px" }}>{dish.category}</span>
-      <p style={{ fontSize: "1.2rem", marginTop: "16px" }}>{dish.description}</p>
-      <h2>Price: {dish.price} ETB</h2>
+    <div className="detail-page">
+      <Link href="/menu" className="secondary-btn small-btn back-link">← Back to menu</Link>
+
+      <div className="detail-layout">
+        <img src={dish.image} alt={dish.name} className="detail-image" />
+
+        <div className="detail-content">
+          <p className="eyebrow">{dish.category}</p>
+          <h1>{dish.name}</h1>
+          <div className="detail-meta">
+            <span>{dish.spicy} spice</span>
+            <span>{dish.price} ETB</span>
+          </div>
+          <p>{dish.description}</p>
+          <AddToCartBtn dish={dish} />
+        </div>
+      </div>
     </div>
   );
 }
